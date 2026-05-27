@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Build Configuration">
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>preview</LangVersion>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
