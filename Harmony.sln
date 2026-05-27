@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{887FC7DA-9A29-4130-92E7-66E21E76CAC4}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
+		THIRD-PARTY-NOTICES = THIRD-PARTY-NOTICES
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Harmony", "Lib.Harmony\Lib.Harmony.csproj", "{DE9D3761-F5E2-46EA-8CA9-A8ECF52589C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Harmony.Thin", "Lib.Harmony.Thin\Lib.Harmony.Thin.csproj", "{AFF09524-D41E-4655-A320-762643DC586B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Harmony.Ref", "Lib.Harmony.Ref\Lib.Harmony.Ref.csproj", "{93530C3F-39BC-4CEB-8D70-C36CE500024D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Harmony", "Harmony\Harmony.shproj", "{8ECC3919-9F65-4A39-B57E-E99A3837DCD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+{DE9D3761-F5E2-46EA-8CA9-A8ECF52589C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9D3761-F5E2-46EA-8CA9-A8ECF52589C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9D3761-F5E2-46EA-8CA9-A8ECF52589C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9D3761-F5E2-46EA-8CA9-A8ECF52589C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF09524-D41E-4655-A320-762643DC586B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF09524-D41E-4655-A320-762643DC586B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF09524-D41E-4655-A320-762643DC586B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF09524-D41E-4655-A320-762643DC586B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93530C3F-39BC-4CEB-8D70-C36CE500024D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93530C3F-39BC-4CEB-8D70-C36CE500024D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93530C3F-39BC-4CEB-8D70-C36CE500024D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93530C3F-39BC-4CEB-8D70-C36CE500024D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61622750-C658-496F-B2E2-75D94AF6CF8B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Harmony\Harmony.projitems*{8ecc3919-9f65-4a39-b57e-e99a3837dcd0}*SharedItemsImports = 13
+		Harmony\Harmony.projitems*{93530c3f-39bc-4ceb-8d70-c36ce500024d}*SharedItemsImports = 5
+		Harmony\Harmony.projitems*{aff09524-d41e-4655-a320-762643dc586b}*SharedItemsImports = 5
+		Harmony\Harmony.projitems*{de9d3761-f5e2-46ea-8ca9-a8ecf52589c0}*SharedItemsImports = 5
+	EndGlobalSection
+EndGlobal

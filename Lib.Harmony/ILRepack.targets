@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="ILRepacker" AfterTargets="Build">
+		<PropertyGroup>
+			<DebugInfo>true</DebugInfo>
+			<DebugInfo Condition="'$(TargetFramework)' == 'netstandard2.0'">false</DebugInfo>
+		</PropertyGroup>
+		
+		<ItemGroup>
+			<InputAssemblies Include="$(OutputPath)\*.dll" />
+		</ItemGroup>
+		
+		<ItemGroup>
+			<LibraryPath Condition="$(TargetFramework) == 'netcoreapp3.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\netcoreapp3.0" />
+			<LibraryPath Condition="$(TargetFramework) == 'netcoreapp3.1'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\netcoreapp3.1" />
+			<LibraryPath Condition="$(TargetFramework) == 'net5.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\net5.0" />
+			<LibraryPath Condition="$(TargetFramework) == 'net6.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\net6.0" />
+			<LibraryPath Condition="$(TargetFramework) == 'net7.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\net7.0" />
+			<LibraryPath Condition="$(TargetFramework) == 'net8.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\net8.0" />
+			<LibraryPath Condition="$(TargetFramework) == 'net9.0'" Include="$(PkgMicrosoft_NetCore_App_Ref)\ref\net9.0" />
+		</ItemGroup>
+		
+		<ILRepack
+			InputAssemblies="@(InputAssemblies)"
+			LibraryPath="@(LibraryPath)"
+			OutputFile="$(OutputPath)\$(AssemblyName).dll"
+			DebugInfo="$(DebugInfo)"
+			CopyAttributes="false"
+			XmlDocumentation="true"
+			Internalize="true"
+			Parallel="true"
+			TargetKind="Dll"
+			Wildcards="true"
+		/>
+	</Target>
+</Project>

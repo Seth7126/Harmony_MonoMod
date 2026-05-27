@@ -1,0 +1,54 @@
+Third-Party Notices
+====================
+
+This project incorporates components from the projects listed below.
+
+------------------------------------------------------------------------
+
+Harmony (original)
+https://github.com/pardeike/Harmony
+Copyright (c) 2017 Andreas Pardeike
+License: MIT
+
+------------------------------------------------------------------------
+
+Harmony (Pathoschild fork, direct upstream of this project)
+https://github.com/Pathoschild/Harmony
+Copyright (c) 2017 Andreas Pardeike
+License: MIT
+
+------------------------------------------------------------------------
+
+MonoMod
+https://github.com/MonoMod/MonoMod
+Copyright (c) 2015 - 2020 0x0ade
+License: MIT
+
+------------------------------------------------------------------------
+
+iced
+https://github.com/icedland/iced
+Copyright (C) 2018-present iced project and contributors
+License: MIT
+
+------------------------------------------------------------------------
+
+Mono.Cecil
+https://github.com/jbevain/cecil
+Copyright (c) 2008 - 2015 Jb Evain
+Copyright (c) 2008 - 2011 Novell, Inc.
+License: MIT
+
+------------------------------------------------------------------------
+
+Microsoft.CodeAnalysis (Roslyn)
+https://github.com/dotnet/roslyn
+Copyright (c) .NET Foundation and Contributors
+License: Apache-2.0
+
+------------------------------------------------------------------------
+
+System.Reflection.Emit
+https://github.com/dotnet/runtime
+Copyright (c) .NET Foundation and Contributors
+License: MIT
