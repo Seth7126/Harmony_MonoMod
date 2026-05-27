@@ -1,0 +1,44 @@
+name: Build Harmony (.NET 9.0)  
+  
+on:  
+  push:  
+    branches: [ main ]  
+  pull_request:  
+    branches: [ main ]  
+  workflow_dispatch:  
+  
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout  
+        uses: actions/checkout@v4  
+  
+      - name: Setup .NET 9.0  
+        uses: actions/setup-dotnet@v4  
+        with:  
+          dotnet-version: '9.0.x'  
+  
+      - name: Restore  
+        run: dotnet "$DOTNET_ROOT/sdk/$(dotnet --version)/MSBuild.dll" Lib.Harmony.Thin/Lib.Harmony.Thin.csproj /t:Restore /p:Configuration=Release /p:TargetFrameworks=net9.0  
+  
+      - name: Build  
+        run: dotnet "$DOTNET_ROOT/sdk/$(dotnet --version)/MSBuild.dll" Lib.Harmony.Thin/Lib.Harmony.Thin.csproj /t:Build /p:Configuration=Release /p:TargetFrameworks=net9.0  
+  
+      - name: Verify target framework is net9.0  
+        run: |  
+          DLL="Lib.Harmony.Thin/bin/Release/net9.0/0Harmony.dll"  
+          if strings "$DLL" | grep -q "NETCoreApp,Version=v9.0"; then  
+            echo "PASS: 0Harmony.dll targets .NET 9.0"  
+          else  
+            echo "FAIL: target framework mismatch"  
+            strings "$DLL" | grep "NETCoreApp" || true  
+            exit 1  
+          fi  
+  
+      - name: Upload artifact  
+        uses: actions/upload-artifact@v4  
+        with:  
+          name: 0Harmony-net9.0  
+          path: Lib.Harmony.Thin/bin/Release/net9.0/
