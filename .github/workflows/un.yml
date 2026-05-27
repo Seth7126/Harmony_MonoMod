@@ -1,0 +1,85 @@
+# .github/workflows/unzip_generic.yml
+
+name: 自动解压仓库中的 Zip 文件
+on:
+  push:
+    branches:
+      - main 
+    paths:
+      - '**.zip'
+  
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unzip_all_zips:
+    runs-on: ubuntu-22.04
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 查找、原地解压、强制添加并删除所有 zip 文件
+        run: |
+          echo "开始查找仓库中的 .zip 文件..."
+          ZIP_FILES=$(find . -type f -name "*.zip" -not -path "./.git/*")
+
+          if [ -z "$ZIP_FILES" ]; then
+            echo "未在此次检出的代码中找到 .zip 文件。"
+            exit 0
+          fi
+
+          echo "找到以下 .zip 文件并准备处理:"
+          echo "$ZIP_FILES"
+          echo "---"
+
+          echo "$ZIP_FILES" | while read -r ZIP_FILE; do
+            if [ -f "$ZIP_FILE" ]; then
+              TARGET_DIR=$(dirname "$ZIP_FILE")
+              
+              echo "正在处理: $ZIP_FILE"
+              echo "  -> 解压到目标目录: $TARGET_DIR"
+              
+              # 1. 解压
+              unzip -o "$ZIP_FILE" -d "$TARGET_DIR"
+              
+              if [ $? -eq 0 ]; then
+                echo "  -> 解压成功。"
+                
+                # 2. 【关键改动】使用 'git add --force' 强制添加解压后的内容
+                # 这会无视 .gitignore 文件的规则
+                echo "  -> 强制暂存 $TARGET_DIR 中的新文件..."
+                git add --force "$TARGET_DIR"
+
+                # 3. 删除原始 .zip 文件
+                echo "  -> 正在删除: $ZIP_FILE"
+                rm "$ZIP_FILE"
+                
+                # 4. 【关键改动】将 "删除zip" 这个操作也明确添加到暂存区
+                git add "$ZIP_FILE"
+              else
+                echo "  -> 错误: 解压 $ZIP_FILE 失败。"
+                exit 1
+              fi
+            fi
+          done
+          echo "---"
+          echo "所有 .zip 文件处理完毕。"
+
+      - name: 提交变动
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 【关键改动】检查暂存区 (staged) 是否有变动，而不是工作目录
+          if ! git diff --staged --quiet; then
+            echo "检测到暂存的变动，正在提交..."
+            # 注意：此处不再需要 'git add .'，因为我们已在循环中处理
+            git commit -m "Chore: 自动解压并删除 .zip 文件"
+            git push
+          else
+            echo "没有文件变动需要提交。"
+          fi
