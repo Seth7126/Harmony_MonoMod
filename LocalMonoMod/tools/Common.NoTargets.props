@@ -2,7 +2,7 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <MMSharedSourceFiles>false</MMSharedSourceFiles>
     <IsPackable>false</IsPackable>
     <EnableDefaultItems>false</EnableDefaultItems>
